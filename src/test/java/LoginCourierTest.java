@@ -1,4 +1,5 @@
 import io.qameta.allure.*;
+import org.junit.After;
 import ru.prakticum.Courier;
 import ru.prakticum.CourierAccount;
 import ru.prakticum.CourierAuthData;
@@ -87,6 +88,11 @@ public class LoginCourierTest {
         assertEquals(400, statusCode);
         String answer = response.extract().path("message");
         assertEquals("Недостаточно данных для входа", answer);
+    }
+
+    @After
+    public void tearDown() {
+        courierAccount.delete(courierId);
     }
 
 }
